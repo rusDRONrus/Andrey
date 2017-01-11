@@ -1,0 +1,43 @@
+class Program
+{
+    static void Main(string[] args)
+    {
+        List<string> cart1 = new List<string>();
+        List<string> cart2 = new List<string>();
+        string a = "";
+
+        while (a != ".")
+        {
+            Console.WriteLine("введите 1 город или '.' для выхода");
+            a = Console.ReadLine();
+            if (a == ".")
+                break;
+            cart1.Add(a);
+            Console.WriteLine("введите 2 город");
+            cart2.Add(Console.ReadLine());
+        }
+        Sort(cart1, cart2);
+        Console.ReadLine();
+    }
+
+    static void Sort(List<string> cart1, List<string> cart2)
+    {
+        string previousCart = cart2[0];
+        Console.Write(cart1[0] + "->" + cart2[0]);
+        cart1.Remove(cart1[0]);
+        cart2.Remove(cart2[0]);
+        while (cart1.Count > 0)
+        {
+            for (int i = 0; i < cart1.Count; i++)
+            {
+                if(cart1[i] == previousCart)
+                {
+                    previousCart = cart2[i];
+                    Console.Write(", " + cart1[i] + " -> " + cart2[i]);
+                    cart1.Remove(cart1[i]);
+                    cart2.Remove(cart2[i]);
+                }
+            }
+        }
+    }
+}
